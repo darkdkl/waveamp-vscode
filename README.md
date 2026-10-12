@@ -76,6 +76,10 @@ WaveAMP has no telemetry and no account. The player runs a small media server in
 - HLS radio streams (`.m3u8`) are not supported.
 - A custom proxy works without a login. For a proxy that needs a password, use the VS Code proxy settings and leave **Proxy: Mode** on **VS Code**.
 
+## Feedback
+
+Bug reports and ideas are welcome in [Issues](https://github.com/darkdkl/waveamp-vscode/issues) — see [CONTRIBUTING.md](CONTRIBUTING.md). Security issues: [SECURITY.md](SECURITY.md).
+
 ## License
 
 WaveAMP is free software under the GNU General Public License, version 3 or later — see [LICENSE](LICENSE). Third-party notices are in `THIRD_PARTY_LICENSES.txt` inside the extension. Code from FAAD2 is copyright (c) Nero AG, www.nero.com.
