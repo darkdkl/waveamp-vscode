@@ -84,7 +84,7 @@ sections.push(
   ].join("\n"),
   [
     "FFmpeg ALAC decoder (libavcodec/alac.c)",
-    "Copyright (c) 2005 David Hammerton and the FFmpeg developers",
+    "Copyright (c) 2005 David Hammerton",
     "License: LGPL-2.1-or-later",
     "Source: https://github.com/FFmpeg/FFmpeg/blob/master/libavcodec/alac.c",
     "The ALAC decoder in src/alac/decoder.ts is a modified TypeScript",
