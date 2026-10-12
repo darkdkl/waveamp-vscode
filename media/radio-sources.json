@@ -1,0 +1,11 @@
+{
+  "discovery": [
+    { "type": "dns-srv", "name": "_api._tcp.radio-browser.info" },
+    { "type": "http", "url": "https://all.api.radio-browser.info/json/servers" }
+  ],
+  "fallback": [
+    "https://de1.api.radio-browser.info",
+    "https://de2.api.radio-browser.info"
+  ],
+  "refreshHours": 24
+}

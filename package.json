@@ -1,0 +1,313 @@
+{
+  "name": "waveamp-vscode",
+  "displayName": "WaveAMP",
+  "description": "Music player in the VS Code sidebar. Plays MP3, FLAC, WAV, OGG, OPUS, M4A, M4B and AAC files, CUE albums and internet radio.",
+  "version": "0.11.1",
+  "publisher": "darkdkl",
+  "license": "GPL-3.0-or-later",
+  "icon": "media/logo.png",
+  "galleryBanner": {
+    "color": "#16181c",
+    "theme": "dark"
+  },
+  "keywords": [
+    "music",
+    "player",
+    "radio",
+    "equalizer",
+    "audio"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darkdkl/waveamp-vscode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/darkdkl/waveamp-vscode/issues"
+  },
+  "homepage": "https://github.com/darkdkl/waveamp-vscode#readme",
+  "private": true,
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "extensionKind": [
+    "ui"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "waveamp",
+          "title": "WaveAMP",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "waveamp": [
+        {
+          "type": "webview",
+          "id": "waveamp.player",
+          "name": "Player"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "waveamp.addFiles",
+        "title": "WaveAMP: Add Files",
+        "icon": "$(new-file)"
+      },
+      {
+        "command": "waveamp.addFolder",
+        "title": "WaveAMP: Add Folder",
+        "icon": "$(new-folder)"
+      },
+      {
+        "command": "waveamp.playPause",
+        "title": "WaveAMP: Play / Pause"
+      },
+      {
+        "command": "waveamp.stop",
+        "title": "WaveAMP: Stop"
+      },
+      {
+        "command": "waveamp.next",
+        "title": "WaveAMP: Next Track"
+      },
+      {
+        "command": "waveamp.previous",
+        "title": "WaveAMP: Previous Track"
+      },
+      {
+        "command": "waveamp.addStation",
+        "title": "WaveAMP: Add Station",
+        "icon": "$(radio-tower)"
+      },
+      {
+        "command": "waveamp.saveTrack",
+        "title": "WaveAMP: Save Track Title"
+      },
+      {
+        "command": "waveamp.openSettings",
+        "title": "WaveAMP: Open Settings",
+        "icon": "$(settings-gear)"
+      },
+      {
+        "command": "waveamp.openRadioSources",
+        "title": "WaveAMP: Open Radio Sources File"
+      },
+      {
+        "command": "waveamp.refreshRadioMirrors",
+        "title": "WaveAMP: Refresh Radio Mirrors"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "waveamp.openSettings",
+          "when": "view == waveamp.player",
+          "group": "settings@1"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "WaveAMP",
+      "properties": {
+        "waveamp.accentColor": {
+          "type": "string",
+          "enum": [
+            "classic",
+            "amber",
+            "ice",
+            "violet",
+            "ruby",
+            "mono"
+          ],
+          "enumItemLabels": [
+            "Classic",
+            "Amber",
+            "Ice",
+            "Violet",
+            "Ruby",
+            "Mono"
+          ],
+          "enumDescriptions": [
+            "Green, like the original display",
+            "Warm amber",
+            "Cool blue",
+            "Violet",
+            "Red",
+            "Grey, no color"
+          ],
+          "default": "classic",
+          "description": "Color of the display and the highlighted controls.",
+          "order": 1
+        },
+        "waveamp.body": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "dark",
+            "light"
+          ],
+          "enumItemLabels": [
+            "Auto",
+            "Dark",
+            "Light"
+          ],
+          "enumDescriptions": [
+            "Follow the VS Code color theme",
+            "Always dark",
+            "Always light"
+          ],
+          "default": "auto",
+          "description": "Color of the player body. The display stays dark either way.",
+          "order": 2
+        },
+        "waveamp.radio.showTrackTitles": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the title of the track playing on a radio station, when the station sends it.",
+          "order": 4
+        },
+        "waveamp.stereo.tracks": {
+          "type": "boolean",
+          "default": false,
+          "description": "Make local tracks sound wider in stereo.",
+          "order": 10
+        },
+        "waveamp.stereo.radio": {
+          "type": "boolean",
+          "default": false,
+          "description": "Make radio stations sound wider in stereo.",
+          "order": 11
+        },
+        "waveamp.stereo.strength": {
+          "type": "number",
+          "default": 50,
+          "minimum": 0,
+          "maximum": 100,
+          "markdownDescription": "How much wider: from `0` (slightly) through `50` (medium) to `100` (strongly).",
+          "order": 12
+        },
+        "waveamp.stereo.pseudoStereo": {
+          "type": "boolean",
+          "default": true,
+          "description": "Give mono tracks and stations a gentle stereo effect when widening is on.",
+          "order": 13
+        },
+        "waveamp.coverArt": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the album cover or the station logo behind the display.",
+          "order": 3
+        },
+        "waveamp.display.longTitlesScrolling": {
+          "type": "string",
+          "enum": [
+            "off",
+            "loop",
+            "bounce",
+            "once"
+          ],
+          "enumItemLabels": [
+            "Off",
+            "Loop",
+            "Back and forth",
+            "Once"
+          ],
+          "enumDescriptions": [
+            "Cut long titles off with an ellipsis",
+            "Scroll long titles round and round",
+            "Pause, scroll to the end, pause and scroll back",
+            "Scroll each new title once, then cut it off with an ellipsis"
+          ],
+          "default": "bounce",
+          "description": "How a track or station title that doesn't fit moves on the display.",
+          "order": 5
+        },
+        "waveamp.display.scrollingSpeed": {
+          "type": "number",
+          "default": 30,
+          "minimum": 10,
+          "maximum": 50,
+          "markdownDescription": "Scrolling speed of long titles, from `10` (slow) to `50` (fast). Not used when **Long Titles Scrolling** is **Off**.",
+          "order": 6
+        },
+        "waveamp.proxy.mode": {
+          "type": "string",
+          "enum": [
+            "vscode",
+            "direct",
+            "custom"
+          ],
+          "enumItemLabels": [
+            "VS Code",
+            "Direct",
+            "Custom"
+          ],
+          "enumDescriptions": [
+            "Use the proxy from the VS Code or system settings",
+            "Always connect directly, without a proxy",
+            "Use the proxy set below, for WaveAMP only"
+          ],
+          "default": "vscode",
+          "description": "How WaveAMP connects to radio stations and the station catalog. Local files never use a proxy.",
+          "order": 20
+        },
+        "waveamp.proxy.type": {
+          "type": "string",
+          "enum": [
+            "http",
+            "socks5"
+          ],
+          "enumItemLabels": [
+            "HTTP",
+            "SOCKS5"
+          ],
+          "default": "http",
+          "description": "Type of the custom proxy.",
+          "order": 21
+        },
+        "waveamp.proxy.host": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Host of the custom proxy, for example `127.0.0.1`. Used when **Proxy: Mode** is **Custom**.",
+          "order": 22
+        },
+        "waveamp.proxy.port": {
+          "type": "number",
+          "default": 0,
+          "minimum": 0,
+          "maximum": 65535,
+          "markdownDescription": "Port of the custom proxy, for example `8080` or `1080`.",
+          "order": 23
+        }
+      }
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc -p . --noEmit",
+    "test": "vitest run",
+    "bundle": "node scripts/bundle.mjs",
+    "licenses": "node scripts/licenses.cjs",
+    "vscode:prepublish": "npm run licenses && npm run bundle",
+    "package": "vsce package --no-dependencies --out waveamp-vscode-$npm_package_version.vsix"
+  },
+  "dependencies": {
+    "music-metadata": "^11.16.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^4.0.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.11"
+  }
+}

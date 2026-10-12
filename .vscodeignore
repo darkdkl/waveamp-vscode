@@ -1,0 +1,10 @@
+**
+!dist/extension.js
+!dist/webview.js
+!dist/faad.wasm
+!media/**
+!package.json
+!README.md
+!CHANGELOG.md
+!LICENSE
+!THIRD_PARTY_LICENSES.txt

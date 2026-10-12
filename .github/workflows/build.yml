@@ -1,0 +1,60 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build
+  cancel-in-progress: false
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check types
+        run: npm run typecheck
+
+      - name: Run tests
+        run: npm test
+
+      - name: Package the extension
+        run: npm run package
+
+      - name: Publish the release
+        run: |
+          version=$(node -p "require('./package.json').version")
+          file="waveamp-vscode-$version.vsix"
+          if gh release view "v$version" > /dev/null 2>&1; then
+            echo "v$version is already released, nothing to publish"
+          else
+            gh release create "v$version" "$file" --title "$version" --notes "" --target "$GITHUB_SHA"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Delete older releases
+        run: |
+          gh release list --limit 100 --exclude-drafts --exclude-pre-releases \
+            --json tagName,createdAt --jq "sort_by(.createdAt) | reverse | .[$RELEASES_TO_KEEP:] | .[].tagName" |
+          while read -r tag; do
+            gh release delete "$tag" --cleanup-tag --yes
+          done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASES_TO_KEEP: 2
