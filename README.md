@@ -67,7 +67,7 @@ The station catalog is served by several radio-browser.info mirrors. WaveAMP fin
 
 ## Privacy
 
-WaveAMP has no telemetry and no account. The player runs a small media server inside the extension that listens only on `127.0.0.1`, uses a random port and a random key for every session, and only reads files you add. Station search uses the public [radio-browser.info](https://www.radio-browser.info) catalog; when you play a station from it, WaveAMP tells the catalog which station it was, as radio players usually do. Your own stations are never sent anywhere except to the station itself. Your favorites and saved track titles sync between your machines only through VS Code Settings Sync, if you have it turned on.
+WaveAMP has no telemetry and no account. The player runs a small media server inside the extension that listens only on `127.0.0.1`, uses a random port and a random key for every session, reads only the files you add and the cover images next to them, and relays radio streams and station logos. Station search uses the public [radio-browser.info](https://www.radio-browser.info) catalog; when you play a station from it, WaveAMP tells the catalog which station it was, as radio players usually do. Your own stations are never sent anywhere except to the station itself. Your favorites and saved track titles sync between your machines only through VS Code Settings Sync, if you have it turned on.
 
 ## Limitations
 
@@ -81,6 +81,8 @@ WaveAMP has no telemetry and no account. The player runs a small media server in
 Bug reports and ideas are welcome in [Issues](https://github.com/darkdkl/waveamp-vscode/issues) — see [CONTRIBUTING.md](CONTRIBUTING.md). Security issues: [SECURITY.md](SECURITY.md).
 
 ## License
+
+Copyright © 2026 Dark.Dmake
 
 WaveAMP is free software under the GNU General Public License, version 3 or later — see [LICENSE](LICENSE). Third-party notices are in `THIRD_PARTY_LICENSES.txt` inside the extension. Code from FAAD2 is copyright (c) Nero AG, www.nero.com.
 
